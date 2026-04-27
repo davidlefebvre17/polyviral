@@ -4,67 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PolyViral - Privacy Policy</title>
-  <style>body{font-family:Inter,system-ui,sans-serif;max-width:700px;margin:40px auto;padding:0 20px;color:#333;line-height:1.7}h1{color:#111;border-bottom:2px solid #eee;padding-bottom:12px}h2{color:#222;margin-top:28px;font-size:1.1em}</style>
+  <style>body{font-family:Inter,system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;color:#333;line-height:1.7}h1{color:#111;border-bottom:2px solid #eee;padding-bottom:12px}h2{color:#222;margin-top:28px;font-size:1.1em}code{background:#f3f3f5;padding:2px 6px;border-radius:4px;font-size:.9em}</style>
 </head>
 <body>
-  <h1>PolyViral - Privacy Policy</h1>
-  <p><strong>Last updated:</strong> April 9, 2026</p>
+  <h1>PolyViral Privacy Policy</h1>
+  <p><strong>Last updated:</strong> April 24, 2026</p>
 
-  <h2>1. Overview</h2>
-  <p>PolyViral respects your privacy. This policy explains what data we collect (almost none) and how we use it. PolyViral is an automated video publishing tool — we do not operate a user-facing application, website with accounts, or any service that collects personal data from individuals.</p>
+  <h2>1. Introduction</h2>
+  <p>This Privacy Policy describes how PolyViral ("PolyViral", "we", "us", or "our") collects, uses, stores, and protects information when you use the PolyViral service. PolyViral is a content creation platform that lets creators generate short-form vertical videos from public prediction market data and publish them to their own TikTok accounts. By using PolyViral you agree to this Privacy Policy.</p>
 
-  <h2>2. Personal Data Collection</h2>
-  <p>PolyViral does <strong>not</strong> collect any personal data from users. Specifically:</p>
+  <h2>2. Information PolyViral Collects</h2>
+  <p>PolyViral collects the minimum information needed to operate the service:</p>
   <ul>
-    <li>We do not have user accounts or login systems</li>
-    <li>We do not use cookies, analytics, or tracking technologies</li>
-    <li>We do not collect names, email addresses, or any personally identifiable information</li>
-    <li>We do not collect or store any TikTok user data</li>
-    <li>We do not share any data with third parties for advertising or marketing purposes</li>
+    <li><strong>TikTok account information</strong> — When you sign in to PolyViral with TikTok Login Kit (scope <code>user.info.basic</code>), PolyViral receives your TikTok open ID, display name, and avatar URL. This information is used inside PolyViral only to show you which TikTok account is currently connected.</li>
+    <li><strong>TikTok access tokens and refresh tokens</strong> — PolyViral stores the OAuth tokens returned by TikTok so that PolyViral can upload and publish videos to your TikTok account when you ask it to. Tokens are stored encrypted at rest.</li>
+    <li><strong>Video content you create</strong> — The Polymarket market selections you make, the captions and hashtags you write, and the rendered MP4 videos you generate through PolyViral.</li>
+    <li><strong>Contact information</strong> — If you email PolyViral support, we keep the email address and message content to answer you.</li>
+  </ul>
+  <p>PolyViral does <strong>not</strong> collect names, addresses, payment information, government identifiers, biometric data, precise location data, or any special-category personal data.</p>
+
+  <h2>3. How PolyViral Uses Your Information</h2>
+  <ul>
+    <li>To authenticate your TikTok account and display it inside PolyViral.</li>
+    <li>To upload and publish videos that you review and explicitly choose to publish, to your own TikTok account, using the TikTok Content Posting API (scopes <code>video.publish</code>, <code>video.upload</code>).</li>
+    <li>To keep the videos and storyboards you generate available for you to review and republish.</li>
+    <li>To answer your support requests.</li>
+    <li>To maintain the security and integrity of PolyViral.</li>
+  </ul>
+  <p>PolyViral does not use your information for advertising, does not sell your information, and does not share your information with third parties for marketing.</p>
+
+  <h2>4. TikTok Data Usage and Compliance</h2>
+  <p>PolyViral uses TikTok APIs solely to let you publish your own videos to your own TikTok account.</p>
+  <ul>
+    <li>PolyViral only requests the scopes it needs: <code>user.info.basic</code>, <code>video.publish</code>, <code>video.upload</code>.</li>
+    <li>PolyViral does not read, crawl, or store any other TikTok user's data, videos, comments, or profile information.</li>
+    <li>PolyViral does not use TikTok data to build behavioral profiles, train machine learning models, or make automated decisions about any TikTok user.</li>
+    <li>PolyViral complies with the TikTok Developer Terms of Service, TikTok Developer Guidelines, TikTok Community Guidelines, and TikTok Content Sharing Guidelines.</li>
+    <li>PolyViral does not remove, alter, or obscure any TikTok watermark, branding, copyright notice, or attribution.</li>
   </ul>
 
-  <h2>3. Public Market Data</h2>
-  <p>We access publicly available data from the Polymarket API, including:</p>
+  <h2>5. Public Polymarket Data</h2>
+  <p>PolyViral reads publicly available data from the Polymarket public API, including resolved market questions, outcomes, and public pseudonymous trade information. This data is already publicly visible on polymarket.com and is not linked to any PolyViral user account.</p>
+
+  <h2>6. Third-Party Services</h2>
+  <p>PolyViral relies on the following third-party services to operate:</p>
   <ul>
-    <li>Public market questions and resolution outcomes</li>
-    <li>Public trade data (pseudonymous usernames, trade amounts, prices)</li>
-    <li>Public leaderboard rankings</li>
+    <li><strong>TikTok Login Kit and TikTok Content Posting API</strong> — user authentication and video publication.</li>
+    <li><strong>Polymarket public API</strong> — public prediction market data.</li>
+    <li><strong>Anthropic Claude API</strong> — text generation assistance when drafting video scripts.</li>
+    <li><strong>Fish Audio API</strong> — text-to-speech narration for rendered videos.</li>
   </ul>
-  <p>All this data is already publicly visible on polymarket.com to anyone. We do not access any private or authenticated Polymarket data.</p>
+  <p>PolyViral only sends these services the minimum information required for each operation. None of these services receive your TikTok access tokens.</p>
 
-  <h2>4. TikTok API Usage</h2>
-  <p>We use the TikTok Content Posting API exclusively to publish original video content to our own TikTok account (@polyviral). Our use of the TikTok API is limited to:</p>
-  <ul>
-    <li>Scope: <code>video.publish</code> — posting videos to our own account</li>
-    <li>We do not access, read, or store any TikTok user data, profiles, or content</li>
-    <li>We do not use TikTok data for any purpose other than publishing our own videos</li>
-    <li>We comply fully with TikTok's Developer Guidelines, Content Sharing Guidelines, and all applicable policies</li>
-    <li>We do not remove, alter, or obscure any TikTok watermarks or branding</li>
-  </ul>
-
-  <h2>5. Third-Party Services</h2>
-  <p>Our pipeline uses the following third-party services for content generation (not for user data processing):</p>
-  <ul>
-    <li><strong>Polymarket API</strong> — public prediction market data</li>
-    <li><strong>TikTok Content Posting API</strong> — video publishing to our own account</li>
-    <li><strong>Anthropic Claude API</strong> — text generation for content scripts</li>
-    <li><strong>Fish Audio API</strong> — voice-over generation</li>
-  </ul>
-  <p>None of these services receive any personal user data from us.</p>
-
-  <h2>6. Data Storage</h2>
-  <p>Generated videos, narration audio, and market data snapshots are stored locally on our own infrastructure for content management and deduplication purposes. No personal data is stored.</p>
-
-  <h2>7. Children's Privacy</h2>
-  <p>PolyViral content involves financial predictions and is intended for audiences 18 years and older. We do not knowingly collect data from children under 13 (or applicable age in your jurisdiction).</p>
+  <h2>7. Data Retention</h2>
+  <p>PolyViral keeps your account information and access tokens for as long as your PolyViral account is active. Videos and storyboards you generate are kept so you can access them from your account. When you disconnect your TikTok account from PolyViral or delete your PolyViral account, PolyViral revokes the stored TikTok tokens, deletes the associated TikTok profile information within 30 days, and deletes or anonymizes the associated generated content within 90 days unless a longer period is required by law.</p>
 
   <h2>8. Your Rights</h2>
-  <p>Since we do not collect personal data, there is no personal data to access, correct, or delete. If you believe your public Polymarket trading data should not be featured in our content, please contact us and we will address your concern.</p>
+  <p>You can at any time:</p>
+  <ul>
+    <li>Disconnect your TikTok account from PolyViral from inside the application, which immediately revokes stored tokens.</li>
+    <li>Request access to, correction of, or deletion of the personal data PolyViral holds about you by emailing the contact address below.</li>
+    <li>Revoke PolyViral's access to your TikTok account directly from the TikTok app under Settings and privacy &rarr; Security and permissions &rarr; Manage app permissions.</li>
+  </ul>
+  <p>If you are in the EEA, the United Kingdom, or California, you additionally have the rights granted by the GDPR, UK GDPR, or CCPA respectively, including the right to lodge a complaint with your data protection authority.</p>
 
-  <h2>9. Changes</h2>
-  <p>We may update this policy at any time. The latest version will always be available at this URL.</p>
+  <h2>9. Security</h2>
+  <p>PolyViral stores access tokens and refresh tokens encrypted at rest and transmits data to TikTok, Polymarket, and other third-party services over HTTPS/TLS. Access to stored credentials is restricted to the PolyViral operational components that need them. No system is perfectly secure, but PolyViral applies industry-standard protections.</p>
 
-  <h2>10. Contact</h2>
-  <p>For privacy inquiries, contact us at polyviral@proton.me</p>
+  <h2>10. Children</h2>
+  <p>PolyViral content covers financial prediction markets and is intended for adults. PolyViral is not directed to children under 13 (or the equivalent minimum age in your jurisdiction) and does not knowingly collect information from them. If you believe a child has provided information to PolyViral, contact us and we will delete it.</p>
+
+  <h2>11. International Transfers</h2>
+  <p>PolyViral may process data in countries other than the one you live in. Where required by law, PolyViral uses appropriate safeguards for international transfers.</p>
+
+  <h2>12. Changes to This Policy</h2>
+  <p>PolyViral may update this Privacy Policy from time to time. The "Last updated" date at the top of this page will be revised accordingly. The current version will always be available at this URL.</p>
+
+  <h2>13. Contact</h2>
+  <p>For any privacy question, data access request, or data deletion request regarding PolyViral, contact: <a href="mailto:davidlefebvre17@gmail.com">davidlefebvre17@gmail.com</a></p>
 </body>
 </html>

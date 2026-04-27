@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PolyViral - Automated Polymarket TikTok Videos</title>
-  <meta name="description" content="PolyViral automatically generates and publishes daily TikTok videos about Polymarket prediction market results, winners and losers.">
+  <title>PolyViral - Turn Prediction Market Data Into TikTok Videos</title>
+  <meta name="description" content="PolyViral is a content creation platform that lets creators generate short-form vertical videos from public prediction market data and publish them to their own TikTok accounts.">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui,-apple-system,sans-serif;color:#1a1a1a;line-height:1.6;background:#fff}
@@ -28,72 +28,84 @@
     footer a{color:#00f2ea;text-decoration:none;margin:0 12px}
     footer a:hover{text-decoration:underline}
     .tag{display:inline-block;background:#ff0050;color:#fff;padding:4px 12px;border-radius:16px;font-size:.85em;margin-top:16px}
+    .cta{display:inline-block;background:#fff;color:#ff0050;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;margin-top:20px}
   </style>
 </head>
 <body>
   <div class="hero">
     <h1>PolyViral</h1>
-    <p>Automated daily TikTok videos showing real prediction market results, winners and losers from Polymarket bets.</p>
-    <div class="tag">Finance · Automated Content</div>
+    <p>A content creation platform for creators who want to turn public prediction market data into engaging short-form videos and publish them to their own TikTok accounts.</p>
+    <div class="tag">For Creators · Finance · Automated Video</div>
   </div>
 
   <div class="container">
     <section>
       <h2>What is PolyViral?</h2>
-      <p>PolyViral is an automated video publishing pipeline that transforms public Polymarket prediction market data into short-form vertical videos for TikTok. Every day, our system selects the most notable resolved markets, renders a 60-70 second video showing the winners, losers, and trade amounts, and publishes it directly to our own TikTok account.</p>
-      <p>The service is fully automated and does <strong>not</strong> collect, store, or process any personal data from TikTok users. It only posts content to the operator's own TikTok account.</p>
+      <p>PolyViral is a web-based tool that helps creators produce short-form vertical videos about prediction market outcomes sourced from public Polymarket data. Creators sign in to PolyViral, connect their own TikTok account via TikTok Login Kit, generate a video from a selection of recently resolved markets, and publish the finished MP4 directly to their own TikTok account through the TikTok Content Posting API.</p>
+      <p>PolyViral does not operate a single publisher account. Every video published through PolyViral is posted to the authenticated creator's own TikTok account, under their own control, with their own caption and privacy settings.</p>
     </section>
 
     <section>
-      <h2>How it works</h2>
+      <h2>How PolyViral works</h2>
       <ol class="flow">
-        <li><strong>Fetch market data</strong> — We query the public Polymarket API for recently resolved prediction markets and the largest public trades.</li>
-        <li><strong>Select top stories</strong> — Our pipeline ranks the day's most notable results and selects the top 3 betting outcomes to feature.</li>
-        <li><strong>Render vertical video</strong> — Using Remotion, we render a 1080x1920 MP4 video (60-70 seconds) with market questions, outcomes, and trader results.</li>
-        <li><strong>Publish to TikTok</strong> — We upload the MP4 to TikTok via the Content Posting API (<code>/v2/post/publish/video/init/</code> with FILE_UPLOAD) and publish with a caption and hashtags.</li>
+        <li><strong>Sign in with TikTok</strong> — The creator authenticates their own TikTok account through TikTok Login Kit and grants PolyViral permission to publish videos on their behalf.</li>
+        <li><strong>Select markets</strong> — The creator browses recently resolved Polymarket prediction markets and picks the outcomes they want to feature in the video.</li>
+        <li><strong>Generate the video</strong> — PolyViral renders a 1080x1920 MP4 (60-70 seconds) using the Remotion rendering engine, with the market questions, outcomes, and public trade data the creator selected.</li>
+        <li><strong>Review and publish</strong> — The creator previews the video, writes a caption, chooses the privacy level (Public / Friends / Only Me), and PolyViral uploads the MP4 to the creator's own TikTok account through the Content Posting API.</li>
       </ol>
     </section>
 
     <section>
-      <h2>TikTok integration</h2>
+      <h2>TikTok API integration</h2>
       <div class="features">
         <div class="card">
           <h3>Login Kit</h3>
-          <p>Used once to authenticate the operator's own TikTok account so that videos can be posted programmatically. Scope: <code>user.info.basic</code>.</p>
+          <p>Used to authenticate each creator's own TikTok account so they can publish videos through PolyViral. Scope requested: <code>user.info.basic</code>. PolyViral only stores the minimum profile data needed to display the connected account to the creator.</p>
         </div>
         <div class="card">
           <h3>Content Posting API</h3>
-          <p>Used to upload and directly post the rendered MP4 videos to the authorized account. Scopes: <code>video.publish</code>, <code>video.upload</code>.</p>
+          <p>Used to upload and publish the creator-reviewed MP4 to the creator's own authenticated TikTok account. Scopes requested: <code>video.publish</code>, <code>video.upload</code>. Creators explicitly trigger each publication from the PolyViral interface.</p>
         </div>
         <div class="card">
-          <h3>Privacy-first</h3>
-          <p>No TikTok user data is read, stored, or shared. The integration only writes content to the operator's own account.</p>
+          <h3>Creator control</h3>
+          <p>Creators choose the caption, hashtags, and privacy setting for every video before publication. They can disconnect their TikTok account from PolyViral at any time, which revokes all access tokens and removes stored profile data.</p>
         </div>
       </div>
     </section>
 
     <section>
+      <h2>Compliance with TikTok policies</h2>
+      <ul>
+        <li>PolyViral complies with the TikTok Developer Terms of Service, Developer Guidelines, and Content Sharing Guidelines.</li>
+        <li>PolyViral does not remove, alter, or obscure any TikTok watermarks, branding, or copyright notices.</li>
+        <li>PolyViral only publishes videos that the authenticated creator has reviewed and explicitly chosen to publish to their own account.</li>
+        <li>PolyViral does not spam, automate account actions beyond creator-initiated video publication, or interact with other TikTok users' content.</li>
+        <li>Access tokens are stored encrypted and are used only for the scopes the creator granted.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Data sources</h2>
       <ul>
-        <li>Polymarket public API — resolved market questions, outcomes, and public pseudonymous trade data</li>
-        <li>No data is collected from end users or TikTok viewers</li>
-        <li>No cookies, analytics, or tracking technologies are used on this site</li>
+        <li>Polymarket public API — publicly available resolved market questions, outcomes, and public pseudonymous trade data already visible on polymarket.com.</li>
+        <li>TikTok Login Kit — basic public profile information of the creator who signed in, used only to display their connected account inside PolyViral.</li>
+        <li>PolyViral does not collect or process any personal data from TikTok viewers.</li>
       </ul>
     </section>
 
     <section>
       <h2>Contact</h2>
-      <p>For questions about PolyViral, contact: <a href="mailto:davidlefebvre17@gmail.com">davidlefebvre17@gmail.com</a></p>
+      <p>For questions about PolyViral, support requests, or data deletion requests, contact: <a href="mailto:davidlefebvre17@gmail.com">davidlefebvre17@gmail.com</a></p>
     </section>
   </div>
 
   <footer>
     <p>
-      <a href="./terms.html">Terms of Service</a> ·
-      <a href="./privacy.html">Privacy Policy</a> ·
+      <a href="./terms.html">Terms of Service</a> &middot;
+      <a href="./privacy.html">Privacy Policy</a> &middot;
       <a href="mailto:davidlefebvre17@gmail.com">Contact</a>
     </p>
-    <p style="margin-top:16px;font-size:.9em">&copy; 2026 PolyViral. Not affiliated with TikTok or Polymarket.</p>
+    <p style="margin-top:16px;font-size:.9em">&copy; 2026 PolyViral. Not affiliated with, endorsed by, or sponsored by TikTok or Polymarket.</p>
   </footer>
 </body>
 </html>
