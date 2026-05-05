@@ -51,6 +51,171 @@
   }
   img { max-width: 100%; height: auto; display: block; }
 
+  /* === LOCK SCREEN === */
+  body.locked { overflow: hidden; }
+  .lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 24px;
+    background:
+      radial-gradient(ellipse at 50% 28%, rgba(30,27,75,0.55) 0%, transparent 65%),
+      linear-gradient(180deg, rgba(5,5,17,0.93) 0%, rgba(11,11,31,0.97) 100%);
+    backdrop-filter: blur(10px);
+    transition: opacity 800ms cubic-bezier(.22,.61,.36,1), visibility 800ms;
+  }
+  .lock-screen.is-unlocked {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .lock-card {
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    animation: lock-fade-in 1100ms cubic-bezier(.22,.61,.36,1);
+  }
+  @keyframes lock-fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .lock-seal {
+    display: inline-flex;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 26px;
+    color: var(--gold-warm);
+    background: radial-gradient(circle at 50% 50%, rgba(251,191,36,0.18), rgba(251,191,36,0.04) 60%, transparent);
+    filter: drop-shadow(0 0 16px rgba(251,191,36,0.4));
+    animation: seal-pulse 4s ease-in-out infinite;
+  }
+  .lock-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .lock-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(38px, 9vw, 56px);
+    color: var(--gold-warm);
+    line-height: 1;
+    margin-bottom: 22px;
+    font-weight: 400;
+    text-shadow: 0 0 28px rgba(251,191,36,0.25);
+  }
+  .lock-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(17px, 4.4vw, 19px);
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0 auto 8px;
+    max-width: 28ch;
+  }
+  .lock-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+  .lock-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+  }
+  .lock-input {
+    width: 100%;
+    max-width: 240px;
+    padding: 18px 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 0.4em;
+    color: var(--gold-warm);
+    background: rgba(11,11,31,0.6);
+    border: 1px solid var(--gold-line);
+    border-radius: 14px;
+    outline: none;
+    transition: border-color 300ms ease, box-shadow 300ms ease, transform 200ms ease;
+    font-variant-numeric: tabular-nums;
+  }
+  .lock-input::placeholder {
+    color: var(--text-mute);
+    font-style: italic;
+    letter-spacing: 0.2em;
+    opacity: 0.5;
+  }
+  .lock-input:focus {
+    border-color: var(--gold-warm);
+    box-shadow: 0 0 0 4px rgba(251,191,36,0.12), 0 0 30px rgba(251,191,36,0.18);
+  }
+  .lock-input.is-error {
+    border-color: rgba(220,80,80,0.7);
+    animation: lock-shake 0.4s cubic-bezier(.36,.07,.19,.97);
+  }
+  @keyframes lock-shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-9px); }
+    40% { transform: translateX(9px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  .lock-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 240px;
+    padding: 16px 26px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: linear-gradient(135deg, #FBBF24 0%, #CA8A04 50%, #FBBF24 100%);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 400ms cubic-bezier(.22,.61,.36,1), box-shadow 400ms ease, background-position 800ms ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(202,138,4,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .lock-submit:hover, .lock-submit:focus-visible {
+    transform: translateY(-2px);
+    background-position: 100% 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 16px 32px rgba(251,191,36,0.55), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .lock-submit:active { transform: translateY(0); }
+  .lock-error {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(244,170,170,0.95);
+    height: 22px;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    margin-top: 4px;
+  }
+  .lock-error.is-visible { opacity: 1; }
+
   /* === PROGRESS BAR === */
   .progress {
     position: fixed;
@@ -297,7 +462,7 @@
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background-image: url('./cosmos-bg.png?v=3');
+    background-image: var(--cosmos-bg-url, none);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: clamp(360px, 78vw, 880px) auto;
@@ -1360,6 +1525,40 @@
 </head>
 <body>
 
+<div class="lock-screen" id="lockScreen" aria-modal="true" role="dialog" aria-labelledby="lockTitle">
+  <div class="lock-card">
+    <span class="lock-seal" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="currentColor">
+        <path d="M18 4 L20 16 L32 18 L20 20 L18 32 L16 20 L4 18 L16 16 Z"/>
+      </svg>
+    </span>
+    <p class="lock-eyebrow">Avant d'entrer</p>
+    <h2 class="lock-title" id="lockTitle">Une question pour toi</h2>
+    <p class="lock-question">Quelle est la date de notre rencontre&nbsp;?</p>
+    <p class="lock-hint">Format JJMM</p>
+    <form class="lock-form" id="lockForm" autocomplete="off" novalidate>
+      <input
+        class="lock-input"
+        id="lockInput"
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]{4}"
+        maxlength="4"
+        placeholder="••••"
+        aria-label="Date au format JJMM"
+        autocomplete="off"
+      >
+      <button type="submit" class="lock-submit">
+        <span>Ouvrir</span>
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 5h11M8 1l4 4-4 4"/>
+        </svg>
+      </button>
+      <p class="lock-error" id="lockError" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
 <div class="progress" aria-hidden="true">
   <div class="progress-fill" id="progressFill"></div>
 </div>
@@ -1382,7 +1581,7 @@
     <span></span><span></span><span></span><span></span>
   </span>
   <audio id="audioEl" preload="auto" loop autoplay>
-    <source src="./three-little-birds.mp3" type="audio/mpeg">
+    <source data-enc="./three-little-birds.enc" data-mime="audio/mpeg" type="audio/mpeg">
   </audio>
 </div>
 
@@ -1510,20 +1709,20 @@
 
   <div class="carousel reveal" aria-roledescription="carousel">
     <div class="carousel-track" id="carouselTrack" tabindex="0" aria-label="Album photos, faites défiler pour voir">
-      <figure class="photo-card"><img src="./IMG-20220127-WA0020.jpg" alt="Souvenir, janvier 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20220207-WA0012.jpg" alt="Souvenir, février 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20220427-WA0096.jpg" alt="Souvenir, avril 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20220721-WA0015.jpg" alt="Souvenir, juillet 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20220721-WA0046.jpg" alt="Souvenir, juillet 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20220829-WA0030.jpg" alt="Souvenir, août 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20221003-WA0007.jpg" alt="Souvenir, octobre 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20221003-WA0042.jpg" alt="Souvenir, octobre 2022" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20230321-WA0037.jpg" alt="Souvenir, mars 2023" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20230322-WA0000.jpg" alt="Souvenir, mars 2023" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20240914-WA0005.jpg" alt="Souvenir, septembre 2024" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20250413-WA0008.jpg" alt="Souvenir, avril 2025" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG-20250609-WA0002.jpeg" alt="Souvenir, juin 2025" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
-      <figure class="photo-card"><img src="./IMG_20251115_100526.jpg" alt="Souvenir, novembre 2025" loading="lazy" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220127-WA0020.enc" data-mime="image/jpeg" alt="Souvenir, janvier 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220207-WA0012.enc" data-mime="image/jpeg" alt="Souvenir, février 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220427-WA0096.enc" data-mime="image/jpeg" alt="Souvenir, avril 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220721-WA0015.enc" data-mime="image/jpeg" alt="Souvenir, juillet 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220721-WA0046.enc" data-mime="image/jpeg" alt="Souvenir, juillet 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20220829-WA0030.enc" data-mime="image/jpeg" alt="Souvenir, août 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20221003-WA0007.enc" data-mime="image/jpeg" alt="Souvenir, octobre 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20221003-WA0042.enc" data-mime="image/jpeg" alt="Souvenir, octobre 2022" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20230321-WA0037.enc" data-mime="image/jpeg" alt="Souvenir, mars 2023" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20230322-WA0000.enc" data-mime="image/jpeg" alt="Souvenir, mars 2023" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20240914-WA0005.enc" data-mime="image/jpeg" alt="Souvenir, septembre 2024" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20250413-WA0008.enc" data-mime="image/jpeg" alt="Souvenir, avril 2025" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG-20250609-WA0002.enc" data-mime="image/jpeg" alt="Souvenir, juin 2025" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
+      <figure class="photo-card"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./IMG_20251115_100526.enc" data-mime="image/jpeg" alt="Souvenir, novembre 2025" decoding="async"><span class="photo-frame-corner tl"></span><span class="photo-frame-corner tr"></span><span class="photo-frame-corner bl"></span><span class="photo-frame-corner br"></span></figure>
     </div>
     <div class="carousel-controls">
       <button class="carousel-btn" id="carouselPrev" type="button" aria-label="Photo précédente">
@@ -1629,7 +1828,7 @@
     </button>
     <p class="gift-modal-eyebrow">Pour Cherry</p>
     <h2 class="gift-modal-title" id="giftModalTitle">Ton bon cadeau</h2>
-    <img class="gift-modal-image" src="./boncadeau.png" alt="Bon cadeau" loading="lazy">
+    <img class="gift-modal-image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-enc="./boncadeau.enc" data-mime="image/png" alt="Bon cadeau">
 
     <div class="gift-reveal">
       <div class="gift-divider" aria-hidden="true">
@@ -1667,6 +1866,160 @@
 <script>
 (function() {
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* === Lock screen + asset decryption === */
+  var PIN_KEY = 'cherry_pin_v1';
+  var SALT = new TextEncoder().encode('cherry-2026-celestial-gift-salt');
+  var cryptoKey = null;
+  var lockScreen = document.getElementById('lockScreen');
+  var lockForm = document.getElementById('lockForm');
+  var lockInput = document.getElementById('lockInput');
+  var lockError = document.getElementById('lockError');
+  var lockSubmit = lockForm ? lockForm.querySelector('.lock-submit') : null;
+  var attempts = 0;
+  var errorMessages = [
+    "Pas tout à fait. Réessaie.",
+    "Cherche dans ta mémoire.",
+    "Le jour, le mois, dans cet ordre.",
+    "Souviens-toi du froid de cet hiver-là."
+  ];
+
+  async function deriveKey(pin) {
+    if (!window.crypto || !window.crypto.subtle) throw new Error('No Web Crypto');
+    var enc = new TextEncoder();
+    var baseKey = await crypto.subtle.importKey(
+      'raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']
+    );
+    return crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: SALT, iterations: 120000, hash: 'SHA-256' },
+      baseKey,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+  }
+
+  async function decryptAsset(url) {
+    var resp = await fetch(url);
+    if (!resp.ok) throw new Error('Fetch failed: ' + url);
+    var buf = await resp.arrayBuffer();
+    var iv = buf.slice(0, 12);
+    var ct = buf.slice(12);
+    return crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: new Uint8Array(iv) },
+      cryptoKey,
+      ct
+    );
+  }
+
+  async function decryptPriority() {
+    // cosmos-bg drives the visual ambiance
+    var cosmosBuf = await decryptAsset('./cosmos-bg.enc');
+    var cosmosBlob = new Blob([cosmosBuf], { type: 'image/png' });
+    document.documentElement.style.setProperty('--cosmos-bg-url', "url('" + URL.createObjectURL(cosmosBlob) + "')");
+
+    // audio
+    var audioEl = document.getElementById('audioEl');
+    if (audioEl) {
+      var audioSource = audioEl.querySelector('source[data-enc]');
+      if (audioSource) {
+        var audioBuf = await decryptAsset(audioSource.dataset.enc);
+        var audioBlob = new Blob([audioBuf], { type: audioSource.dataset.mime || 'audio/mpeg' });
+        audioEl.src = URL.createObjectURL(audioBlob);
+        audioEl.load();
+      }
+    }
+  }
+
+  function decryptImagesBackground() {
+    var imgs = document.querySelectorAll('img[data-enc]');
+    Array.prototype.forEach.call(imgs, function(img) {
+      decryptAsset(img.dataset.enc).then(function(buf) {
+        var blob = new Blob([buf], { type: img.dataset.mime || 'image/jpeg' });
+        img.src = URL.createObjectURL(blob);
+      }).catch(function(e) { console.warn('Decrypt fail', img.dataset.enc, e); });
+    });
+  }
+
+  function setSubmitting(state) {
+    if (!lockSubmit) return;
+    if (state) {
+      lockSubmit.disabled = true;
+      if (!lockSubmit.dataset._original) lockSubmit.dataset._original = lockSubmit.innerHTML;
+      lockSubmit.innerHTML = '<span>Ouverture…</span>';
+    } else {
+      lockSubmit.disabled = false;
+      if (lockSubmit.dataset._original) lockSubmit.innerHTML = lockSubmit.dataset._original;
+    }
+  }
+
+  function unlockUI() {
+    if (!lockScreen) return;
+    lockScreen.classList.add('is-unlocked');
+    document.body.classList.remove('locked');
+    setTimeout(function() {
+      var audioEl = document.getElementById('audioEl');
+      if (audioEl && audioEl.paused) {
+        var p = audioEl.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+      }
+    }, 400);
+  }
+
+  function showError(msg) {
+    if (!lockError || !lockInput) return;
+    lockError.textContent = msg;
+    lockError.classList.add('is-visible');
+    lockInput.classList.add('is-error');
+    setTimeout(function(){ lockInput.classList.remove('is-error'); }, 500);
+  }
+
+  async function attemptUnlock(pin, persist) {
+    cryptoKey = await deriveKey(pin);
+    await decryptPriority(); // throws if PIN wrong (auth tag mismatch)
+    if (persist) { try { localStorage.setItem(PIN_KEY, pin); } catch(e){} }
+    decryptImagesBackground();
+    unlockUI();
+  }
+
+  if (lockScreen && lockForm && lockInput) {
+    document.body.classList.add('locked');
+
+    var savedPin = null;
+    try { savedPin = localStorage.getItem(PIN_KEY); } catch(e){}
+
+    if (savedPin && /^\d{4}$/.test(savedPin)) {
+      attemptUnlock(savedPin, false).catch(function() {
+        try { localStorage.removeItem(PIN_KEY); } catch(e){}
+        setTimeout(function(){ lockInput.focus(); }, 400);
+      });
+    } else {
+      setTimeout(function(){ lockInput.focus(); }, 400);
+    }
+
+    lockForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var val = (lockInput.value || '').trim();
+      if (!/^\d{4}$/.test(val)) {
+        showError("Quatre chiffres, format JJMM.");
+        return;
+      }
+      setSubmitting(true);
+      try {
+        await attemptUnlock(val, true);
+      } catch (err) {
+        setSubmitting(false);
+        showError(errorMessages[attempts % errorMessages.length]);
+        attempts++;
+      }
+    });
+
+    lockInput.addEventListener('input', function() {
+      lockError.classList.remove('is-visible');
+      this.value = this.value.replace(/\D/g, '').slice(0, 4);
+    });
+  }
+
 
   /* === Gift Modal === */
   var giftModal = document.getElementById('giftModal');
